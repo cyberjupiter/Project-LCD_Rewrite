@@ -1,4 +1,4 @@
-//LCD_c.cpp
+//LCDinC.cpp
 
 #include "LCD_C.h"
 

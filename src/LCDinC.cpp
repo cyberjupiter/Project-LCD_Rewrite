@@ -24,27 +24,22 @@ void lcd_init(void)
   
   //init LCD 2 lines, 5x7
   send_cmd(0b00111000);
-  //send pulse
   delay(300);
 
   //display on, cursor on
   send_cmd(0b00001110); 
-  //send pulse
   delay(30);
   
   //clear LCD
   send_cmd(0b00000001); 
-  //send pulse
   delay(30);
   
   //shift cursor right
   send_cmd(0b00000110);
-  //send pulse
   delay(30);
   
   //line 1, position 6
   send_cmd(0b10000110);
-  //send pulse
   delay(30);
   
   //write 'AIMAN, INIT OK'

@@ -42,7 +42,7 @@ void lcd_init(void)
   send_cmd(0b10000110);
   delay(30);
   
-  //write 'AIMAN, INIT OK'
+  //write "INIT OK"
   lcd_write("INIT OK");
 }
 

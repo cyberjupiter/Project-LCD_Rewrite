@@ -3,23 +3,18 @@
 #ifndef LCDinC_h
 #define LCDinC_h
 
-#define RS  12
-#define EN  10
-#define D0  9
-#define D1  8
-#define D2  2
-#define D3  3
-#define D4  4
-#define D5  5
-#define D6  6
-#define D7  7
-
 #include "Arduino.h"
 
+/* user available commands */
+void lcd_setPins(uint8_t rs, uint8_t en, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7);
 void lcd_init(void);
-void send_cmd(uint8_t wCmd);
-void send_data(uint8_t wData);
+void lcd_write(uint8_t *pChar);
+void lcd_setCursor(uint8_t col, uint8_t row);
+
+
+/* low level commands */
+void send_cmd(uint8_t pCmd);
+void send_data(uint8_t pData);
 void send_pulse(void);
-void lcd_write(uint8_t *wChar);
 
 #endif

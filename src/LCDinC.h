@@ -1,9 +1,7 @@
 //LCDinC.h
 
-#ifndef LCD_C_h
-#define LCD_C_h
-
-#include "Arduino.h"
+#ifndef LCDinC_h
+#define LCDinC_h
 
 #define RS  12
 #define EN  10
@@ -16,9 +14,12 @@
 #define D6  6
 #define D7  7
 
-void LCD_Cinit(void);
+#include "Arduino.h"
+
+void lcd_init(void);
 void send_cmd(uint8_t wCmd);
-void send_pulse(uint8_t instruc); //0 or 1; 0 for control command, 1 for data command
+void send_data(uint8_t wData);
+void send_pulse(void);
 void lcd_write(uint8_t *wChar);
 
 #endif

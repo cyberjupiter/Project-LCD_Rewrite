@@ -54,20 +54,17 @@ void lcd_init(void)
 
 	//init LCD 2 lines, 5x8
 	send_cmd(0b00111000);
-	delay(300);
+	delay(5);
 
 	//display on, cursor off
 	send_cmd(0b00001100); 
-	delay(30);
 
 	//shift cursor right
 	send_cmd(0b00000110);
-	delay(30);
 
 	//line 1, position 1
 	send_cmd(0b10000000);
-	delay(30);
-
+	
 	//write  "INIT OK"
 	lcd_write("INIT OK");
 	delay(500);

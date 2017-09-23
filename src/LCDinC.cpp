@@ -29,6 +29,7 @@ void lcd_setPins(uint8_t rs, uint8_t en, uint8_t d0, uint8_t d1, uint8_t d2, uin
 
 void lcd_init(void)
 {
+	delay(50);
 	for (uint8_t i = 0; i < 2; i++)
 	{
 		pinMode(pins_control[i], 1);
@@ -41,30 +42,36 @@ void lcd_init(void)
 		digitalWrite(pins_data[i], 0);
 	}
 
-	delay(500);
+	//initialization by instruction as in datasheet. also known as wake-up call
+	send_cmd(0b00110000);
+	delay(5);
+	
+	send_cmd(0b00110000);
+	delay(1);
+	
+	send_cmd(0b00110000);
+	delay(1);
 
 	//init LCD 2 lines, 5x8
 	send_cmd(0b00111000);
 	delay(300);
 
-	//display on, cursor on
-	send_cmd(0b00001110); 
-	delay(30);
-
-	//clear LCD
-	send_cmd(0b00000001); 
+	//display on, cursor off
+	send_cmd(0b00001100); 
 	delay(30);
 
 	//shift cursor right
 	send_cmd(0b00000110);
 	delay(30);
 
-	//line 1, position 6
-	send_cmd(0b10000110);
+	//line 1, position 1
+	send_cmd(0b10000000);
 	delay(30);
 
 	//write  "INIT OK"
 	lcd_write("INIT OK");
+	delay(500);
+	lcd_clear();
 }
 
 void send_cmd(uint8_t pCmd)
@@ -113,6 +120,7 @@ void lcd_setCursor(uint8_t col, uint8_t row)
 	{
 		send_cmd(0b11000000 + col);
 	}
+	
 	else if (row == 2)
 	{
 		send_cmd(0b10010100 + col);

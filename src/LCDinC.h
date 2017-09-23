@@ -1,5 +1,9 @@
 //LCDinC.h
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifndef LCDinC_h
 #define LCDinC_h
 
@@ -12,10 +16,13 @@ void lcd_write(uint8_t *pChar);
 void lcd_setCursor(uint8_t col, uint8_t row);
 void lcd_clear(void);
 
-
 /* low level commands */
 void send_cmd(uint8_t pCmd);
 void send_data(uint8_t pData);
 void send_pulse(void);
 
+#endif
+
+#ifdef __cplusplus
+} // extern "C"
 #endif

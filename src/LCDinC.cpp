@@ -43,7 +43,7 @@ void lcd_init(void)
 
 	delay(500);
 
-	//init LCD 2 lines, 5x7
+	//init LCD 2 lines, 5x8
 	send_cmd(0b00111000);
 	delay(300);
 

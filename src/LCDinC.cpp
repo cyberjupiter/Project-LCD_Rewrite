@@ -98,7 +98,7 @@ void lcd_write(uint8_t *pChar)
 {
 	for(uint8_t i = 0; pChar[i] != '\0'; i++)
 	{
-		send_data(wChar[i]);
+		send_data(pChar[i]);
 	}
 }
 

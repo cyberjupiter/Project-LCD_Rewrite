@@ -10,6 +10,7 @@ void lcd_setPins(uint8_t rs, uint8_t en, uint8_t d0, uint8_t d1, uint8_t d2, uin
 void lcd_init(void);
 void lcd_write(uint8_t *pChar);
 void lcd_setCursor(uint8_t col, uint8_t row);
+void lcd_clear(void);
 
 
 /* low level commands */

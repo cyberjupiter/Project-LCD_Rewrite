@@ -76,7 +76,7 @@ void send_cmd(uint8_t pCmd)
 	digitalWrite(pins_control[RS], 0);
 	for (uint8_t i = 0; i < 8; i++)
 	{
-		digitalWrite(pins_data[i], (pCmd >> i) & 0b0000001);
+		digitalWrite(pins_data[i], (pCmd >> i) & 0b00000001);
 	}
 	send_pulse();
 }
@@ -86,7 +86,7 @@ void send_data(uint8_t pData)
 	digitalWrite(pins_control[RS], 1);
 	for (uint8_t i = 0; i < 8; i++)
 	{
-		digitalWrite(pins_data[i], (pData >> i) & 0b0000001);
+		digitalWrite(pins_data[i], (pData >> i) & 0b00000001);
 	}
 	send_pulse();
 }

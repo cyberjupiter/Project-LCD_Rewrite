@@ -109,8 +109,22 @@ void lcd_setCursor(uint8_t col, uint8_t row)
 		send_cmd(0b10000000 + col);
 	}
 	
-	else  
+	else if (row == 1)
 	{
 		send_cmd(0b11000000 + col);
 	}
+	else if (row == 2)
+	{
+		send_cmd(0b10010100 + col);
+	}
+	
+	else
+	{
+		send_cmd(0b11010100 + col);
+	}
+} 
+
+void lcd_clear(void)
+{
+	send_cmd(0b00000001); 
 }

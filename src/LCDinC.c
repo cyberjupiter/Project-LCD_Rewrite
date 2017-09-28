@@ -1,4 +1,4 @@
-//LCDinC.cpp
+//LCDinC.c
 
 #include "LCDinC.h"
 

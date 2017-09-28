@@ -10,7 +10,7 @@ enum{
 uint8_t pins_control[2];
 uint8_t pins_data[8];
 
-void lcd_setPins(uint8_t rs, uint8_t en, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
+void lcd_set8bit(uint8_t rs, uint8_t en, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
 {
 	//instrucion register pins
 	pins_control[RS] = rs; 

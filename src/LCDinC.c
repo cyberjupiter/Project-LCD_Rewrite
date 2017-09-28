@@ -43,13 +43,13 @@ void lcd_init(void)
 	}
 
 	//initialization by instruction as in datasheet. also known as wake-up call
-	send_cmd(0b00110000);
+	send_cmd(INIT);
 	delay(5);
 	
-	send_cmd(0b00110000);
+	send_cmd(INIT);
 	delay(1);
 	
-	send_cmd(0b00110000);
+	send_cmd(INIT);
 	delay(1);
 
 	//init LCD 2 lines, 5x8
@@ -110,22 +110,22 @@ void lcd_setCursor(uint8_t col, uint8_t row)
 {
 	if (row == 0)
 	{
-		send_cmd(0b10000000 + col);
+		send_cmd(ROW0 + col);
 	}
 	
 	else if (row == 1)
 	{
-		send_cmd(0b11000000 + col);
+		send_cmd(ROW1 + col);
 	}
 	
 	else if (row == 2)
 	{
-		send_cmd(0b10010100 + col);
+		send_cmd(ROW2 + col);
 	}
 	
 	else
 	{
-		send_cmd(0b11010100 + col);
+		send_cmd(ROW3 + col);
 	}
 } 
 

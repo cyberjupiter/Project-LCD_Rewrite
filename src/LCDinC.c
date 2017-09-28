@@ -131,5 +131,35 @@ void lcd_setCursor(uint8_t col, uint8_t row)
 
 void lcd_clear(void)
 {
-	send_cmd(0b00000001); 
+	send_cmd(CLEAR); 
+}
+
+void lcd_displayOn(void)
+{
+	send_cmd(DISPLAYON);
+}
+
+void lcd_displayOff(void)
+{
+	send_cmd(DISPLAYOFF);
+}
+
+void lcd_cursorOn(void)
+{
+	send_cmd(CURSORON);
+}
+
+void lcd_cursorOff(void)
+{
+	send_cmd(CURSOROFF);
+}
+
+void lcd_blinkOn(void)
+{
+	send_cmd(BLINKON);
+}
+
+void lcd_blinkOff(void)
+{
+	send_cmd(BLINKOFF);
 }

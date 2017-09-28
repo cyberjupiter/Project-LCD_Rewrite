@@ -7,7 +7,14 @@ extern "C" {
 #ifndef LCDinC_h
 #define LCDinC_h
 
+#define INIT        0b00110000
 #define CLEAR       0b00000001
+  
+#define ROW0        0b10000000
+#define ROW1        0b11000000
+#define ROW2        0b10010100
+#define ROW3        0b11010100
+
 #define DISPLAYON   0b00001100
 #define DISPLAYOFF  0b00001000
 #define CURSORON    0b00001110

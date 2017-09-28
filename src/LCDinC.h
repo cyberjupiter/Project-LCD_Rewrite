@@ -7,6 +7,7 @@ extern "C" {
 #ifndef LCDinC_h
 #define LCDinC_h
 
+#define CLEAR       0b00000001
 #define DISPLAYON   0b00001100
 #define DISPLAYOFF  0b00001000
 #define CURSORON    0b00001110

@@ -163,3 +163,25 @@ void lcd_blinkOff(void)
 {
 	send_cmd(BLINKOFF);
 }
+
+void entryModeLeft(void)
+{
+	send_cmd(ENTRYLEFT);
+}
+
+void entryModeRight(void)
+{
+	send_cmd(ENTRYRIGHT);
+}
+
+void shift_allLeft(void)
+{
+	send_cmd(SHIFTALLLEFT);
+}
+
+void shift_allRight(void)
+{
+	send_cmd(SHIFTALLRIGHT);
+}
+
+

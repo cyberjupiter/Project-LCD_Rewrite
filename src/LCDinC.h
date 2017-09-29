@@ -41,12 +41,10 @@ void lcd_cursorOn(void);
 void lcd_cursorOff(void);
 void lcd_blinkOn(void);
 void lcd_blinkOff(void);
-
-/* mid level commands, not neccessary but might be handy */
 void entryModeLeft(void);
 void entryModeRight(void);
-void shift_allLeft(void); //not working, will fix later
-void shift_allRight(void); //not working, will fix later
+void shift_allLeft(void);
+void shift_allRight(void); 
 
 /* low level commands */
 void send_cmd(uint8_t pCmd);

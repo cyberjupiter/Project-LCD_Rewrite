@@ -164,15 +164,13 @@ void lcd_blinkOff(void)
 	send_cmd(BLINKOFF);
 }
 
-void entryModeLeft(void)
+void entryModeRight(uint8_t *position, uint8_t *shift_flag)
 {
-	send_cmd(ENTRYLEFT);
-}
-
-void entryModeRight(void)
-{
-	send_cmd(ENTRYRIGHT);
-}
+	if (position == "left" && shift_flag == "on")
+	{
+		send_cmd(ENTRYLEFT);
+	}
+	
 
 void shift_allLeft(void)
 {

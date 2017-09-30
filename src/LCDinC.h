@@ -44,7 +44,7 @@ void lcd_cursorOn(void);
 void lcd_cursorOff(void);
 void lcd_blinkOn(void);
 void lcd_blinkOff(void);
-void entryModeRight(uint8_t *position, uint8_t *shift_flag);
+void entryMode(uint8_t *position, uint8_t *shift_flag);
 void shift_allLeft(void);
 void shift_allRight(void); 
 

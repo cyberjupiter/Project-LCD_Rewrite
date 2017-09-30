@@ -164,11 +164,31 @@ void lcd_blinkOff(void)
 	send_cmd(BLINKOFF);
 }
 
-void entryModeRight(uint8_t *position, uint8_t *shift_flag)
+void entryMode(uint8_t *position, uint8_t *shift_flag)
 {
-	if (position == "left" && shift_flag == "on")
+	if (position == "left" && shift_flag == "off") //decrement address, shift off. write each char to left
 	{
 		send_cmd(ENTRYLEFT);
+	}
+	
+	else if(position == "left" && shift_flag == "on") //increment address, shift on. write each char to left by shifting
+	{
+		send_cmd(ENTRYLEFTON);
+	}
+	
+	else if(position == "right" && shift_flag == "off") //increment address, shift off. write each char to right, normal method
+	{
+		send_cmd(ENTRYRIGHT);
+	}
+	
+	else if(position == "right" && shift_flag == "on") //not working, will fix
+	{
+		send_cmd(ENTRYRIGHTON);
+	}
+	
+	else
+	{
+		lcd_write("INVALID CODE");
 	}
 	
 

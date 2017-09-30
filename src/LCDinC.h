@@ -24,8 +24,11 @@ extern "C" {
   
 #define ENTRYLEFT     0b00000100
 #define ENTRYRIGHT    0b00000110
-#define SHIFTALLLEFT  0b00000101
-#define SHIFTALLRIGHT 0b00000111
+#define ENTRYLEFTON   0b00000111
+#define ENTRYRIGHTON  0b00000101
+  
+#define SHIFTALLLEFT  0b00011000
+#define SHIFTALLRIGHT 0b00011000
   
 #include "Arduino.h"
 
@@ -41,8 +44,7 @@ void lcd_cursorOn(void);
 void lcd_cursorOff(void);
 void lcd_blinkOn(void);
 void lcd_blinkOff(void);
-void entryModeLeft(void);
-void entryModeRight(void);
+void entryModeRight(uint8_t *position, uint8_t *shift_flag);
 void shift_allLeft(void);
 void shift_allRight(void); 
 

@@ -75,7 +75,7 @@ void lcd_init(void)
 
 void send_cmd(uint8_t pCmd)
 {
-	while(read_busyflag == 0);
+	while(read_busyflag == 1);
 	
 	digitalWrite(pins_control[RS], 0);
 	digitalWrite(pins_control[RW], 0);

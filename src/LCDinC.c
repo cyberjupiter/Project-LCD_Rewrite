@@ -4,17 +4,20 @@
 
 enum{
 	RS,
+	RW,
 	EN
 };
 
-uint8_t pins_control[2];
+uint8_t pins_control[3];
 uint8_t pins_data[8];
 
-void lcd_set8bit(uint8_t rs, uint8_t en, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
+void lcd_set8bit(uint8_t rs, uint8_t rw, uint8_t en, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
 {
 	//instrucion register pins
 	pins_control[RS] = rs; 
+	pins_control[RW] = rw;
 	pins_control[EN] = en;
+	
 	
 	//data register pins
 	pins_data[0] = d0;
@@ -30,7 +33,7 @@ void lcd_set8bit(uint8_t rs, uint8_t en, uint8_t d0, uint8_t d1, uint8_t d2, uin
 void lcd_init(void)
 {
 	delay(50);
-	for (uint8_t i = 0; i < 2; i++)
+	for (uint8_t i = 0; i < 3; i++)
 	{
 		pinMode(pins_control[i], 1);
 		digitalWrite(pins_control[i], 0);
@@ -54,7 +57,6 @@ void lcd_init(void)
 
 	//init LCD 2 lines, 5x8
 	send_cmd(0b00111000);
-	delay(5);
 
 	//display on, cursor off
 	send_cmd(0b00001100); 
@@ -73,7 +75,10 @@ void lcd_init(void)
 
 void send_cmd(uint8_t pCmd)
 {
+	while(read_busyflag == 0);
+	
 	digitalWrite(pins_control[RS], 0);
+	digitalWrite(pins_control[RW], 0);
 	for (uint8_t i = 0; i < 8; i++)
 	{
 		digitalWrite(pins_data[i], (pCmd >> i) & 0b00000001);
@@ -83,7 +88,10 @@ void send_cmd(uint8_t pCmd)
 
 void send_data(uint8_t pData)
 {
+	while(read_busyflag == 1);
+	
 	digitalWrite(pins_control[RS], 1);
+	digitalWrite(pins_control[RW], 0);
 	for (uint8_t i = 0; i < 8; i++)
 	{
 		digitalWrite(pins_data[i], (pData >> i) & 0b00000001);
@@ -96,6 +104,21 @@ void send_pulse(void)
 	digitalWrite(pins_control[EN], 1);
 	delay(10);
 	digitalWrite(pins_control[EN], 0);
+}
+
+uint8_t read_busyflag(void)
+{
+	uint8_t busy_flag;
+	
+	pinMode(pins_control[7], 0);
+	digitalWrite(pins_control[RS], 0);
+	digitalWrite(pins_control[RW], 1);
+	
+	digitalWrite(pins_control[EN], 1);
+	busy_flag = digitalRead(pins_control[7]);
+	digitalWrite(pins_control[EN], 0);
+	
+	return busy_flag;
 }
 
 void lcd_write(uint8_t *pChar)
@@ -190,6 +213,7 @@ void entryMode(uint8_t *position, uint8_t *shift_flag)
 	{
 		lcd_write("INVALID CODE");
 	}
+}
 	
 
 void shift_allLeft(void)
@@ -201,5 +225,3 @@ void shift_allRight(void)
 {
 	send_cmd(SHIFTALLRIGHT);
 }
-
-

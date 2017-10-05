@@ -140,14 +140,14 @@ void lcd_setCursor(uint8_t col, uint8_t row)
 		send_cmd(ROW1 + col);
 	}
 	
-	else if (row == 2)
+	else if (row == 3)
 	{
-		send_cmd(ROW2 + col);
+		send_cmd(ROW3 + col);
 	}
 	
 	else
 	{
-		send_cmd(ROW3 + col);
+		return 1;
 	}
 } 
 

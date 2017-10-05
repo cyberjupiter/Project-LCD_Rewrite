@@ -75,7 +75,7 @@ void lcd_init(void)
 
 void send_cmd(uint8_t pCmd)
 {
-	while(read_busyflag == 1);
+	while(read_busyflag() == 1);
 	
 	digitalWrite(pins_control[RS], 0);
 	digitalWrite(pins_control[RW], 0);
@@ -88,7 +88,7 @@ void send_cmd(uint8_t pCmd)
 
 void send_data(uint8_t pData)
 {
-	while(read_busyflag == 1);
+	while(read_busyflag() == 1);
 	
 	digitalWrite(pins_control[RS], 1);
 	digitalWrite(pins_control[RW], 0);
@@ -102,8 +102,9 @@ void send_data(uint8_t pData)
 void send_pulse(void)
 {
 	digitalWrite(pins_control[EN], 1);
-	delay(10);
+	delay(1);
 	digitalWrite(pins_control[EN], 0);
+	delay(1);
 }
 
 uint8_t read_busyflag(void)
@@ -114,9 +115,7 @@ uint8_t read_busyflag(void)
 	digitalWrite(pins_control[RS], 0);
 	digitalWrite(pins_control[RW], 1);
 	
-	digitalWrite(pins_control[EN], 1);
 	busy_flag = digitalRead(pins_control[7]);
-	digitalWrite(pins_control[EN], 0);
 	
 	return busy_flag;
 }

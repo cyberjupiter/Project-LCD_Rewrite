@@ -2,7 +2,7 @@
 *
 * Author : cyberjupiter@AimanMazlan 
 * Github : https://github.com/cyberjupiter/Project-LCD_Rewrite
-* Rev    :2.0.0 
+* Rev    : 2.0.0 
 * Controller : Arduino UNO (other Arduino should be fine if the pins are set correctly)
 *
 * This library is based on HD44780U driver. The datasheet is available on the internet.
